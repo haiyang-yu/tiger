@@ -1,7 +1,7 @@
 package org.tiger.tools.crypto;
 
 import lombok.extern.slf4j.Slf4j;
-import org.tiger.tools.Pair;
+import org.tiger.tools.common.Pair;
 import org.tiger.tools.exception.CryptoException;
 import org.tiger.tools.utils.IoUtil;
 

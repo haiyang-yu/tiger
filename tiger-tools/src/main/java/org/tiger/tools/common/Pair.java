@@ -1,6 +1,8 @@
-package org.tiger.tools;
+package org.tiger.tools.common;
 
 import lombok.Getter;
+
+import java.io.Serializable;
 
 /**
  * {@link Pair}
@@ -10,8 +12,9 @@ import lombok.Getter;
  * 2020-01-07 14:17 周二
  */
 @Getter
-public class Pair<K, V> {
+public class Pair<K, V> implements Serializable {
 
+    private static final long serialVersionUID = -7343395372982823371L;
     private final K key;
     private final V value;
 

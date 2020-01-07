@@ -3,7 +3,7 @@ package org.tiger.tools.crypto;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.tiger.tools.Pair;
+import org.tiger.tools.common.Pair;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
