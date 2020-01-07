@@ -1,6 +1,6 @@
 # Push, IM, 消息推送, 物联网, 加密, 集群
 
-![java](https://img.shields.io/badge/java-v1.8-blue)
+![java](https://img.shields.io/badge/java-v1.8-blue.svg)
 ![spring-boot](https://img.shields.io/badge/spring--boot-v2.1.6.RELEASE-blue)
 ![netty](https://img.shields.io/badge/netty-v4.1.44.Final-blue)
 ![coverage](https://img.shields.io/badge/coverage-5%25-orange)
