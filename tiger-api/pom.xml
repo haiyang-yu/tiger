@@ -9,17 +9,17 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tiger-core</artifactId>
+    <artifactId>tiger-api</artifactId>
     <packaging>jar</packaging>
 
-    <name>tiger-core</name>
-    <description>核心模块</description>
+    <name>tiger-api</name>
+    <description>API模块</description>
     <url>http://www.tiger.com</url>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>tiger-api</artifactId>
+            <artifactId>tiger-tools</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
