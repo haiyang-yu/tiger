@@ -10,7 +10,6 @@
     <modules>
         <module>tiger-tools</module>
         <module>tiger-api</module>
-        <module>tiger-common</module>
         <module>tiger-core</module>
         <module>tiger-sdk</module>
     </modules>
@@ -53,11 +52,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>tiger-tools</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tiger-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
