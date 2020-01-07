@@ -8,9 +8,9 @@
     <artifactId>tiger</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
-        <module>tiger-core</module>
         <module>tiger-tools</module>
-        <module>tiger-common</module>
+        <module>tiger-api</module>
+        <module>tiger-core</module>
         <module>tiger-sdk</module>
     </modules>
     <packaging>pom</packaging>
@@ -56,7 +56,7 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>tiger-common</artifactId>
+                <artifactId>tiger-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

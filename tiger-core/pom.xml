@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>tiger-common</artifactId>
+            <artifactId>tiger-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
