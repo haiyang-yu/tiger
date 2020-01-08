@@ -62,7 +62,7 @@ public abstract class AbstractNettyTcpService extends BaseService {
     }
 
     @Override
-    public void start(Listener listener) {
+    protected void doStart(Listener listener) {
         if (!serverState.compareAndSet(State.INITIALIZED, State.STARTING)) {
             throw new ServiceException("Server already started or have not init");
         }
@@ -74,7 +74,7 @@ public abstract class AbstractNettyTcpService extends BaseService {
     }
 
     @Override
-    public void stop(Listener listener) {
+    protected void doStop(Listener listener) {
         if (!serverState.compareAndSet(State.STARTED, State.SHUTDOWN)) {
             if (listener != null) {
                 listener.onFailure(new ServiceException("Server was already shutdown."));

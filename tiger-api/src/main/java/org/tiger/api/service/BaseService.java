@@ -71,13 +71,21 @@ public abstract class BaseService implements Service {
         listener.onSuccess();
     }
 
+    /**
+     * 服务启动停止，超时时间, 默认是10s
+     * @return 超时时间
+     */
+    public int timeoutMillis() {
+        return 1000 * 10;
+    }
+
     private void tryStart(Listener listener, Consumer<Listener> consumer) {
         FutureListener futureListener = wrapper(listener);
         if (started.compareAndSet(false, true)) {
             try {
                 init();
                 consumer.accept(futureListener);
-                futureListener.monitor();
+                futureListener.monitor(this);
             } catch (Exception e) {
                 futureListener.onFailure(e);
                 throw new ServiceException(e);
@@ -92,7 +100,7 @@ public abstract class BaseService implements Service {
         if (started.compareAndSet(true, false)) {
             try {
                 consumer.accept(futureListener);
-                futureListener.monitor();
+                futureListener.monitor(this);
             } catch (Exception e) {
                 futureListener.onFailure(e);
                 throw new ServiceException(e);

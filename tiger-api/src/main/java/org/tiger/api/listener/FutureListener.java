@@ -1,5 +1,6 @@
 package org.tiger.api.listener;
 
+import org.tiger.api.service.BaseService;
 import org.tiger.tools.exception.ServiceException;
 
 import java.util.concurrent.CompletableFuture;
@@ -60,15 +61,15 @@ public class FutureListener extends CompletableFuture<Boolean> implements Listen
     /**
      * 超时监控，防止服务长时间卡在某个地方
      */
-    public void monitor() {
+    public void monitor(BaseService service) {
         if (isDone()) {
             return;
         }
         runAsync(() -> {
             try {
-                this.get(10000, TimeUnit.MILLISECONDS);
+                this.get(service.timeoutMillis(), TimeUnit.MILLISECONDS);
             } catch (Exception e) {
-                this.onFailure(new ServiceException("service monitor timeout", e));
+                this.onFailure(new ServiceException(String.format("service %s monitor timeout", service.getClass().getSimpleName()), e));
             }
         });
     }
