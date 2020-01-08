@@ -60,6 +60,7 @@ public class FutureListener extends CompletableFuture<Boolean> implements Listen
 
     /**
      * 超时监控，防止服务长时间卡在某个地方
+     * @param service 服务
      */
     public void monitor(BaseService service) {
         if (isDone()) {
