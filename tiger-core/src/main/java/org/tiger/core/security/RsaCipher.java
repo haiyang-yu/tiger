@@ -1,6 +1,7 @@
 package org.tiger.core.security;
 
 import org.tiger.api.security.Cipher;
+import org.tiger.tools.common.Constant;
 import org.tiger.tools.crypto.RsaUtil;
 
 import java.security.interfaces.RSAPrivateKey;
@@ -14,6 +15,11 @@ import java.security.interfaces.RSAPublicKey;
  * 2020-01-07 17:36 周二
  */
 public class RsaCipher implements Cipher {
+
+    private static RsaCipher INSTANCE = new RsaCipher(
+            CipherBox.INSTANCE.getPrivateKey(Constant.PRIVATE_KEY),
+            CipherBox.INSTANCE.getPublicKey(Constant.PUBLIC_KEY)
+    );
 
     private final RSAPrivateKey privateKey;
     private final RSAPublicKey publicKey;
@@ -33,7 +39,7 @@ public class RsaCipher implements Cipher {
         return RsaUtil.encryptByPublicKey(data, publicKey);
     }
 
-    public static RsaCipher create(String privateKey, String publicKey) {
-        return new RsaCipher(CipherBox.INSTANCE.getPrivateKey(privateKey), CipherBox.INSTANCE.getPublicKey(publicKey));
+    public static RsaCipher create() {
+        return INSTANCE;
     }
 }
