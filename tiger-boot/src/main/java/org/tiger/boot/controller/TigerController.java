@@ -3,7 +3,10 @@ package org.tiger.boot.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.tiger.core.netty.server.connection.ConnectionServer;
 import org.tiger.tools.common.RestResponse;
+
+import javax.annotation.Resource;
 
 /**
  * {@link TigerController}
@@ -16,14 +19,11 @@ import org.tiger.tools.common.RestResponse;
 @RequestMapping("/connection")
 public class TigerController {
 
-    /*@Value("${netty.connectServerPort}")
-    private Integer port;*/
-
-    /*@Resource
-    private ConnectionServer connectionServer;*/
+    @Resource
+    private ConnectionServer connectionServer;
 
     @GetMapping("/number")
     public RestResponse<Integer> getConnectionNumber() {
-        return RestResponse.createBySuccess(1/* + connectionServer.getConnectionManager().getConnectionNumber()*/);
+        return RestResponse.createBySuccess(connectionServer.getConnectionManager().getConnectionNumber());
     }
 }
