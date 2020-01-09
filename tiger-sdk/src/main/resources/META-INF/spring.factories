@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.tiger.sdk.config.FilterConfig,\
+  org.tiger.sdk.properties.DefaultProperties,\
+  org.tiger.sdk.config.NettyConfig

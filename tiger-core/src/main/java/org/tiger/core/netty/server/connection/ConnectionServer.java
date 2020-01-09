@@ -1,4 +1,4 @@
-package org.tiger.core.server.connection;
+package org.tiger.core.netty.server.connection;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelHandler;
@@ -12,8 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.tiger.api.connection.ConnectionManager;
 import org.tiger.api.listener.Listener;
 import org.tiger.core.connection.ServerConnectionManager;
-import org.tiger.core.server.AbstractNettyTcpService;
-import org.tiger.core.server.handler.ServerChannelHandler;
+import org.tiger.core.netty.AbstractNettyTcpService;
+import org.tiger.core.netty.server.handler.ServerChannelHandler;
 import org.tiger.tools.common.Constant;
 import org.tiger.tools.common.ThreadName;
 

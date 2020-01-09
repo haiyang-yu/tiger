@@ -19,7 +19,11 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>tiger-core</artifactId>
+            <artifactId>tiger-sdk</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>tiger-sdk</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

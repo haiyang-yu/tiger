@@ -1,4 +1,4 @@
-package org.tiger.core.server;
+package org.tiger.core.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
