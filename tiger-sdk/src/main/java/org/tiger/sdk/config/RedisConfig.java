@@ -15,10 +15,12 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.tiger.core.cache.RedisManager;
 
 import javax.annotation.Resource;
 import java.time.Duration;
@@ -37,6 +39,9 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     @Resource
     private LettuceConnectionFactory factory;
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+
     /**
      * 自定义缓存key的生成策略
      * @return {@link KeyGenerator}
@@ -94,5 +99,10 @@ public class RedisConfig extends CachingConfigurerSupport {
         template.setValueSerializer(jackson2JsonRedisSerializer);
         template.afterPropertiesSet();
         return template;
+    }
+
+    @Bean
+    public RedisManager redisManager() {
+        return new RedisManager(stringRedisTemplate);
     }
 }
