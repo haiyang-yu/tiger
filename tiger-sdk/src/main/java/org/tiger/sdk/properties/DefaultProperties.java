@@ -14,7 +14,8 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @PropertySource(value = {
-        "classpath:/netty.properties"
+        "classpath:/netty.properties",
+        "classpath:/redis.properties"
 }, ignoreResourceNotFound = true)
 public class DefaultProperties {
 

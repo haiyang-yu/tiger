@@ -1,5 +1,6 @@
 package org.tiger.boot.controller;
 
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,9 +22,13 @@ public class TigerController {
 
     @Resource
     private ConnectionServer connectionServer;
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
 
     @GetMapping("/number")
     public RestResponse<Integer> getConnectionNumber() {
+        String json = stringRedisTemplate.opsForValue().get("ssp::area::findById::1");
+        System.out.println(json);
         return RestResponse.createBySuccess(connectionServer.getConnectionManager().getConnectionNumber());
     }
 }

@@ -19,7 +19,7 @@ public class FilterConfig {
 
     @Bean
     public FilterRegistrationBean<CorsFilter> corsFilter() {
-        log.info("CORS filter init bean...");
+        log.info("start init CORS filter...");
         FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>();
         bean.setFilter(new CorsFilter());
         bean.setOrder(0);
