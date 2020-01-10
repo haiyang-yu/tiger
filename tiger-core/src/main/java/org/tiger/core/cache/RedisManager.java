@@ -70,7 +70,13 @@ public class RedisManager implements CacheManager {
 
     @Override
     public void set(String key, String value, int timeout, TimeUnit unit) {
-        call(redisTemplate -> redisTemplate.opsForValue().set(key, value, timeout, unit));
+        call(redisTemplate -> {
+            if (timeout > 0) {
+                redisTemplate.opsForValue().set(key, value, timeout, unit);
+            } else {
+                redisTemplate.opsForValue().set(key, value);
+            }
+        });
     }
 
     @Override

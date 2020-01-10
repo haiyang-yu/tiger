@@ -2,6 +2,7 @@ package org.tiger.tools.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -13,7 +14,10 @@ import java.io.Serializable;
  * 2020-01-07 17:06 周二
  */
 @Getter
+@ToString
 public class RestResponse<T> implements Serializable {
+
+    private static final long serialVersionUID = 2415781993335293701L;
 
     private Integer code;
     private String msg;
