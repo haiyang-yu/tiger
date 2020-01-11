@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.tiger.sdk.filter.CorsFilter;
 
+import javax.servlet.Filter;
+
 /**
  * {@link FilterConfig}
  * 跨域拦截过滤器
@@ -18,9 +20,9 @@ import org.tiger.sdk.filter.CorsFilter;
 public class FilterConfig {
 
     @Bean
-    public FilterRegistrationBean<CorsFilter> corsFilter() {
+    public FilterRegistrationBean<Filter> corsFilter() {
         log.info("start init CORS filter...");
-        FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>();
+        FilterRegistrationBean<Filter> bean = new FilterRegistrationBean<>();
         bean.setFilter(new CorsFilter());
         bean.setOrder(0);
         return bean;

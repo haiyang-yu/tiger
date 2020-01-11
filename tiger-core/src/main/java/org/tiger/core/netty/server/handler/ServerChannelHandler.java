@@ -6,7 +6,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.slf4j.Slf4j;
 import org.tiger.api.connection.Connection;
 import org.tiger.api.connection.ConnectionManager;
-import org.tiger.core.connection.NettyConnection;
+import org.tiger.netty.server.connection.NettyConnection;
 import org.tiger.tools.protocol.Packet;
 
 /**

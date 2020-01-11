@@ -9,27 +9,17 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tiger-sdk</artifactId>
+    <artifactId>tiger-common</artifactId>
     <packaging>jar</packaging>
 
-
-    <name>tiger-sdk</name>
-    <description>SDK模块</description>
+    <name>tiger-common</name>
+    <description>公共模块</description>
     <url>http://www.tiger.com</url>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>tiger-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
+            <artifactId>tiger-api</artifactId>
         </dependency>
     </dependencies>
 </project>

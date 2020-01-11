@@ -11,14 +11,20 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.tiger.api.connection.ConnectionManager;
 import org.tiger.api.listener.Listener;
-import org.tiger.core.connection.ServerConnectionManager;
 import org.tiger.core.netty.AbstractNettyTcpService;
 import org.tiger.core.netty.server.handler.ServerChannelHandler;
-import org.tiger.tools.common.Constant;
+import org.tiger.netty.server.connection.ServerConnectionManager;
 import org.tiger.tools.common.ThreadName;
+import org.tiger.tools.config.DefaultConfig;
 
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+
+import static org.tiger.tools.config.DefaultConfig.Tiger.Net.CONNECT_SERVER_BIND_IP;
+import static org.tiger.tools.config.DefaultConfig.Tiger.Net.CONNECT_SERVER_PORT;
+import static org.tiger.tools.config.DefaultConfig.Tiger.Net.TrafficShaping.ConnectServer.*;
+import static org.tiger.tools.config.DefaultConfig.Tiger.Net.WriteBufferWaterMark.CONNECT_SERVER_HIGH;
+import static org.tiger.tools.config.DefaultConfig.Tiger.Net.WriteBufferWaterMark.CONNECT_SERVER_LOW;
 
 /**
  * {@link ConnectionServer}
@@ -36,8 +42,8 @@ public class ConnectionServer extends AbstractNettyTcpService {
     @Getter
     private ConnectionManager connectionManager;
 
-    public ConnectionServer(String host, int port) {
-        super(host, port);
+    public ConnectionServer() {
+        super(CONNECT_SERVER_BIND_IP, CONNECT_SERVER_PORT);
         this.connectionManager = new ServerConnectionManager(true);
         this.channelHandler = new ServerChannelHandler(true, connectionManager);
     }
@@ -46,15 +52,15 @@ public class ConnectionServer extends AbstractNettyTcpService {
     public void init() {
         super.init();
         connectionManager.init();
-        if (Constant.TRAFFIC_SHAPING_ENABLED) {
+        if (ENABLED) {
             trafficShapingExecutor = new ScheduledThreadPoolExecutor(1, new DefaultThreadFactory(ThreadName.T_TRAFFIC_SHAPING, true));
             trafficShapingHandler = new GlobalChannelTrafficShapingHandler(
                     trafficShapingExecutor,
-                    0,
-                    1024 * 100,
-                    1024 * 3,
-                    1024 * 3,
-                    100);
+                    WRITE_GLOBAL_LIMIT,
+                    READ_GLOBAL_LIMIT,
+                    WRITE_CHANNEL_LIMIT,
+                    READ_CHANNEL_LIMIT,
+                    CHECK_INTERVAL);
         }
     }
 
@@ -90,9 +96,11 @@ public class ConnectionServer extends AbstractNettyTcpService {
     protected void initOptions(ServerBootstrap bootstrap) {
         super.initOptions(bootstrap);
         bootstrap.option(ChannelOption.SO_BACKLOG, 1024);
-        bootstrap.childOption(ChannelOption.SO_SNDBUF, 1024 * 32);
-        bootstrap.childOption(ChannelOption.SO_RCVBUF, 1024 * 32);
-        bootstrap.childOption(ChannelOption.WRITE_BUFFER_WATER_MARK, new WriteBufferWaterMark(1024 * 32, 1024 * 64));
+        bootstrap.childOption(ChannelOption.SO_SNDBUF, DefaultConfig.Tiger.Net.SndBuf.CONNECT_SERVER);
+        bootstrap.childOption(ChannelOption.SO_RCVBUF, DefaultConfig.Tiger.Net.RcvBuf.CONNECT_SERVER);
+        bootstrap.childOption(ChannelOption.WRITE_BUFFER_WATER_MARK, new WriteBufferWaterMark(
+                CONNECT_SERVER_LOW, CONNECT_SERVER_HIGH)
+        );
     }
 
     @Override

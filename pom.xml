@@ -13,6 +13,9 @@
         <module>tiger-core</module>
         <module>tiger-sdk</module>
         <module>tiger-boot</module>
+        <module>tiger-cache</module>
+        <module>tiger-netty</module>
+        <module>tiger-common</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -117,13 +120,53 @@
                 <artifactId>tiger-boot</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>tiger-cache</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>tiger-netty</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>tiger-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- ================================================= -->
+            <!-- Zookeeper 依赖 -->
+            <!-- ================================================= -->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>2.12.0</version><!--(client 2.x.x <==> server 3.4.x) (client 3.x.x <==> server 3.5.x)-->
+                <exclusions>
+                    <exclusion>
+                        <artifactId>netty</artifactId>
+                        <groupId>io.netty</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-x-discovery</artifactId>
+                <version>2.12.0</version><!--(client 2.x.x <==> server 3.4.x) (client 3.x.x <==> server 3.5.x)-->
+            </dependency>
             <!-- ================================================= -->
             <!-- 第三方依赖 -->
             <!-- ================================================= -->
             <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-pool2</artifactId>
-                <version>2.8.0</version>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>2.9.0</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.typesafe</groupId>
+                <artifactId>config</artifactId>
+                <version>1.4.0</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
