@@ -10,6 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>tiger-tools</artifactId>
-
+    <packaging>jar</packaging>
+    <name>tiger-tools</name>
+    <description>工具包</description>
+    <url>https://github.com/song-qingwei/tiger</url>
 
 </project>
