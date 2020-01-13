@@ -10,6 +10,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>tiger-core</artifactId>
+    <packaging>jar</packaging>
+    <name>tiger-core</name>
+    <description>核心模块</description>
+    <url>https://github.com/song-qingwei/tiger</url>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>tiger-netty</artifactId>
+        </dependency>
+    </dependencies>
 </project>
