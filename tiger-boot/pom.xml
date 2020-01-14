@@ -10,6 +10,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>tiger-boot</artifactId>
+    <packaging>jar</packaging>
+    <name>tiger-boot</name>
+    <description>启动模块</description>
+    <url>https://github.com/song-qingwei/tiger</url>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>tiger-core</artifactId>
+        </dependency>
+    </dependencies>
 </project>

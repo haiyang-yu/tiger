@@ -222,7 +222,8 @@
     </appender>
 
     <root>
-        <level value="${log.level"/>
+        <level value="${log.level}"/>
+        <appender-ref ref="STDOUT"/>
         <appender-ref ref="TIGER_APPENDER"/>
         <appender-ref ref="TIGER_DEBUG_APPENDER"/>
         <appender-ref ref="TIGER_INFO_APPENDER"/>
