@@ -1,8 +1,8 @@
 package org.tiger.sample.config;
 
+import com.typesafe.config.ConfigRenderOptions;
 import org.tiger.common.config.TigerConfig;
 import org.tiger.common.log.TigerLog;
-import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * {@link LoadConfig}
@@ -15,8 +15,8 @@ public class LoadConfig {
 
     public static void main(String[] args) {
         TigerLog.init();
-        JedisPoolConfig config = TigerConfig.Tiger.Redis.getPoolConfig(JedisPoolConfig.class);
-
-        System.out.println(config);
+        TigerLog.CONSOLE.info(TigerConfig.CONFIG.root().render(ConfigRenderOptions.concise().setFormatted(true)));
+        TigerLog.CONSOLE.info("--------------------------------->");
+        TigerLog.CONSOLE.info(TigerConfig.Tiger.Net.CONNECT_SERVER_REGISTER_ATTR.toString());
     }
 }

@@ -1,4 +1,4 @@
-package org.tiger.common.crypto;
+package org.tiger.common.security.crypto;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ public class AesUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AesUtil.class);
 
-    private static final String KEY_ALGORITHM = "AES";
+    public static final String KEY_ALGORITHM = "AES";
     private static final String KEY_ALGORITHM_PADDING = "AES/CBC/PKCS5Padding";
 
     public static SecretKey getSecretKey(byte[] bytes) throws Exception {

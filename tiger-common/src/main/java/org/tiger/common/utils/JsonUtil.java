@@ -17,7 +17,7 @@ import java.util.List;
  * @since 1.0.0
  * 2020-01-14 11:06 周二
  */
-public class JsonUtil {
+public final class JsonUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JsonUtil.class);
 

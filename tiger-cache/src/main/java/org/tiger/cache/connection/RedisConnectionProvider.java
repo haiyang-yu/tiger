@@ -1,6 +1,8 @@
 package org.tiger.cache.connection;
 
 import org.apache.commons.lang3.StringUtils;
+import org.tiger.api.listener.Listener;
+import org.tiger.cache.exception.RedisException;
 import org.tiger.common.config.data.RedisNode;
 import org.tiger.common.log.TigerLog;
 import redis.clients.jedis.*;
@@ -8,6 +10,7 @@ import redis.clients.util.Pool;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -53,7 +56,7 @@ public class RedisConnectionProvider {
         }
     }
 
-    public void destroy() {
+    public void destroy(Listener listener) {
         if (pool != null) {
             pool.destroy();
             pool = null;
@@ -62,9 +65,15 @@ public class RedisConnectionProvider {
             try {
                 cluster.close();
             } catch (IOException e) {
+                if (Objects.nonNull(listener)) {
+                    listener.onFailure(new RedisException("Cannot properly close Jedis cluster", e));
+                }
                 TigerLog.CACHE.warn("Cannot properly close Jedis cluster", e);
             }
             cluster = null;
+        }
+        if (Objects.nonNull(listener)) {
+            listener.onSuccess(port);
         }
     }
 
@@ -114,6 +123,10 @@ public class RedisConnectionProvider {
         Jedis jedis = new Jedis(shardInfo);
         jedis.connect();
         return jedis;
+    }
+
+    public int getPort() {
+        return port;
     }
 
     public void setPassword(String password) {

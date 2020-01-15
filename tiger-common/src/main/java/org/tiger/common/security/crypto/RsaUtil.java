@@ -1,4 +1,4 @@
-package org.tiger.common.crypto;
+package org.tiger.common.security.crypto;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;

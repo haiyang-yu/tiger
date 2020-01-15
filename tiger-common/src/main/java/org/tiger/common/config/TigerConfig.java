@@ -100,8 +100,8 @@ public interface TigerConfig {
 
             int ADMIN_SERVER_PORT = CONFIG.getInt("admin-server-port");
 
-            int WS_SERVER_PORT = CONFIG.getInt("ws-server-port");
-            String WS_PATH = CONFIG.getString("ws-path");
+            int WEBSOCKET_SERVER_PORT = CONFIG.getInt("ws-server-port");
+            String WEBSOCKET_PATH = CONFIG.getString("ws-path");
 
             /**
              * 是否使用 tcp
@@ -140,7 +140,7 @@ public interface TigerConfig {
              * @return true：启用
              */
             static boolean wsEnabled() {
-                return WS_SERVER_PORT > 0;
+                return WEBSOCKET_SERVER_PORT > 0;
             }
 
             interface SndBuf {

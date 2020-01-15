@@ -1,5 +1,7 @@
 package org.tiger.api.cache;
 
+import org.tiger.api.service.Server;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @since 1.0.0
  * 2020-01-14 10:24 周二
  */
-public interface CacheManager {
+public interface CacheManager extends Server {
 
     /**
      * 自增值
@@ -28,6 +30,13 @@ public interface CacheManager {
      * @return 自增后的值
      */
     long incrBy(String key, long delta);
+
+    /**
+     * 取出指定key的值
+     * @param key key
+     * @return key的值
+     */
+    String get(String key);
 
     /**
      * 取出指定key的值

@@ -12,17 +12,13 @@
     <artifactId>tiger-sample</artifactId>
     <packaging>jar</packaging>
     <name>tiger-sample</name>
-    <description>测试模块</description>
+    <description>示例代码模块</description>
     <url>https://github.com/song-qingwei/tiger</url>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>tiger-boot</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>tiger-cache</artifactId>
         </dependency>
     </dependencies>
 </project>

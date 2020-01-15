@@ -111,12 +111,3 @@ logs/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-
-tiger-boot/src/main/
-tiger-cache/src/test/
-tiger-common/src/test/
-tiger-core/src/main/java/org/tiger/core/netty/client/
-tiger-core/src/main/java/org/tiger/core/netty/server/gateway/
-tiger-core/src/main/java/org/tiger/core/netty/server/websocket/
-tiger-netty/src/main/resources/
-tiger-netty/src/test/

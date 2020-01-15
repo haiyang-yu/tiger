@@ -1,4 +1,4 @@
-package org.tiger.common.crypto;
+package org.tiger.common.security.crypto;
 
 import org.tiger.common.utils.IoUtil;
 

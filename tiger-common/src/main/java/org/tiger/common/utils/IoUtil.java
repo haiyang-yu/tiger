@@ -17,7 +17,7 @@ import java.util.zip.InflaterInputStream;
  * @since 1.0.0
  * 2020-01-14 11:07 周二
  */
-public class IoUtil {
+public final class IoUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IoUtil.class);
 

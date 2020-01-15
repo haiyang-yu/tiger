@@ -1,6 +1,6 @@
 package org.tiger.api.zk.discovery;
 
-import org.tiger.api.service.Service;
+import org.tiger.api.service.Server;
 import org.tiger.api.zk.listener.ServiceListener;
 import org.tiger.api.zk.node.ServiceNode;
 
@@ -13,7 +13,7 @@ import java.util.List;
  * @since 1.0.0
  * 2020-01-14 14:44 周二
  */
-public interface ServiceDiscovery extends Service {
+public interface ServiceDiscovery extends Server {
 
     /**
      * 获取指定路径下的节点信息列表

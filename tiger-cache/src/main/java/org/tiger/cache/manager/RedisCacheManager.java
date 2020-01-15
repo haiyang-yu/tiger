@@ -65,12 +65,12 @@ public class RedisCacheManager extends BaseService implements CacheManager {
 
     @Override
     protected void doStart(Listener listener) {
-        testConnect();
+        testConnect(listener);
     }
 
     @Override
     protected void doStop(Listener listener) {
-        provider.destroy();
+        provider.destroy(listener);
     }
 
     private <R> R call(Function<JedisCommands, R> function, R r) {
@@ -106,15 +106,20 @@ public class RedisCacheManager extends BaseService implements CacheManager {
         return call(jedis -> jedis.incrBy(key, delta), 0L);
     }
 
+    @Override
+    public String get(String key) {
+        return call(jedis -> jedis.get(key), null);
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public <T> T get(String key, Class<T> clazz) {
+        if (clazz == String.class) {
+            return (T) get(key);
+        }
         String value = call(jedis -> jedis.get(key), null);
         if (value == null) {
             return null;
-        }
-        if (clazz == String.class) {
-            return (T) value;
         }
         return JsonUtil.parseObject(value, clazz);
     }
@@ -330,18 +335,19 @@ public class RedisCacheManager extends BaseService implements CacheManager {
                 .collect(Collectors.toList());
     }
 
-    private void testConnect() {
+    private void testConnect(Listener listener) {
         if (provider.isCluster()) {
             JedisCluster cluster = provider.getCluster();
             if (Objects.isNull(cluster)) {
-                throw new RedisException("init redis cluster error.");
+                listener.onFailure(new RedisException("init redis cluster error."));
             }
         } else {
             Jedis jedis = provider.getJedisConnection();
             if (Objects.isNull(jedis)) {
-                throw new RedisException("init redis error, can not get connection.");
+                listener.onFailure(new RedisException("init redis error, can not get connection."));
             }
             jedis.close();
         }
+        listener.onSuccess(provider.getPort());
     }
 }

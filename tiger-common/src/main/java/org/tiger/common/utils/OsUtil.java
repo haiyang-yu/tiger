@@ -11,7 +11,7 @@ import java.util.Locale;
  * @since 1.0.0
  * 2020-01-14 10:52 周二
  */
-public class OsUtil {
+public final class OsUtil {
 
     private static final String OS = TigerConfig.CONFIG.getString("os.name").toLowerCase(Locale.UK).trim();
     private static final String ARCH = TigerConfig.CONFIG.getString("sun.arch.data.model");

@@ -16,9 +16,9 @@ public class RedisCache {
     public static void main(String[] args) {
         TigerLog.init();
         CacheManager manager = CacheManagerFactory.create();
-        manager.init();
+        manager.syncStart();
         manager.set("tiger:test", "测试");
-        System.out.println(manager.get("tiger:test", String.class));
-        manager.destroy();
+        TigerLog.CONSOLE.info("key=(tiger:test), value=({})", manager.get("tiger:test"));
+        manager.syncStop();
     }
 }

@@ -1,6 +1,6 @@
 package org.tiger.api.zk.registry;
 
-import org.tiger.api.service.Service;
+import org.tiger.api.service.Server;
 import org.tiger.api.zk.node.ServiceNode;
 
 /**
@@ -10,7 +10,7 @@ import org.tiger.api.zk.node.ServiceNode;
  * @since 1.0.0
  * 2020-01-14 14:27 周二
  */
-public interface ServiceRegistry extends Service {
+public interface ServiceRegistry extends Server {
 
     /**
      * 注册节点
