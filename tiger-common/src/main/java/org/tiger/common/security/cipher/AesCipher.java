@@ -2,6 +2,7 @@ package org.tiger.common.security.cipher;
 
 import org.tiger.api.crypto.Cipher;
 import org.tiger.common.security.crypto.AesUtil;
+import org.tiger.common.security.crypto.Base64Util;
 
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -37,5 +38,10 @@ public class AesCipher implements Cipher {
     @Override
     public byte[] encrypt(byte[] data) {
         return AesUtil.encrypt(data, keySpec, zeroIv);
+    }
+
+    @Override
+    public String toString() {
+        return Base64Util.encode(key) + "," + Base64Util.encode(iv);
     }
 }

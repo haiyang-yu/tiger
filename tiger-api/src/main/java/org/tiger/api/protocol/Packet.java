@@ -1,5 +1,7 @@
 package org.tiger.api.protocol;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * {@link Packet}
  * 自定义协议
@@ -76,5 +78,15 @@ public class Packet {
 
     public boolean hasFlag(byte flag) {
         return (flags & flag) != 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Packet{" +
+                "cmd=" + cmd +
+                ", flags=" + flags +
+                ", sessionId=" + sessionId +
+                ", body=" + new String(body, StandardCharsets.UTF_8) +
+                '}';
     }
 }

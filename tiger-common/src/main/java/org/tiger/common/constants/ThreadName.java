@@ -17,4 +17,8 @@ public class ThreadName {
     public static final String T_CONN_WORKER = BASIC + "-conn-work";
     public static final String T_CONN_TIMER = BASIC + "-conn-check-timer";
     public static final String T_TRAFFIC_SHAPING = BASIC + "-traffic-shaping";
+
+    public static final String T_CLIENT = BASIC + "-client";
+    public static final String T_TCP_CLIENT = BASIC + "-tcp-client";
+    public static final String T_HTTP_CLIENT = BASIC + "-http-client-work";
 }

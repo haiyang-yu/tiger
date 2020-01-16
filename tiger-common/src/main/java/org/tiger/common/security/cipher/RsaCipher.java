@@ -1,6 +1,7 @@
 package org.tiger.common.security.cipher;
 
 import org.tiger.api.crypto.Cipher;
+import org.tiger.common.security.crypto.Base64Util;
 import org.tiger.common.security.crypto.RsaUtil;
 
 import java.security.interfaces.RSAPrivateKey;
@@ -41,5 +42,13 @@ public class RsaCipher implements Cipher {
                 CipherBox.INSTANCE.getPrivateKey(PRIVATE_KEY),
                 CipherBox.INSTANCE.getPublicKey(PUBLIC_KEY)
         );
+    }
+
+    @Override
+    public String toString() {
+        return "RsaCipher{" +
+                "privateKey=" + Base64Util.encode(privateKey.getEncoded()) +
+                ", publicKey=" + Base64Util.encode(publicKey.getEncoded()) +
+                '}';
     }
 }

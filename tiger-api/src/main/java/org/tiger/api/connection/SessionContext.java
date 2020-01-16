@@ -37,7 +37,7 @@ public class SessionContext {
     /**
      * 心跳周期（毫秒）
      */
-    public int heartbeat = 10000;
+    public int heartbeat = 20000;
 
     /**
      * 加解密

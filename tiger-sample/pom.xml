@@ -20,5 +20,9 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>tiger-boot</artifactId>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>tiger-client</artifactId>
+        </dependency>
     </dependencies>
 </project>

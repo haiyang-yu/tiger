@@ -104,4 +104,8 @@ public class ConnectionServer extends BaseNettyTcpServer {
     public ChannelHandler getChannelHandler() {
         return channelHandler;
     }
+
+    public ConnectionManager getConnectionManager() {
+        return connectionManager;
+    }
 }

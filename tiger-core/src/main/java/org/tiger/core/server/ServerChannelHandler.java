@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tiger.api.connection.Connection;
 import org.tiger.api.connection.ConnectionManager;
+import org.tiger.api.protocol.Command;
 import org.tiger.api.protocol.Packet;
 import org.tiger.netty.connection.NettyConnection;
 
@@ -58,6 +59,13 @@ public class ServerChannelHandler extends ChannelInboundHandlerAdapter {
         Connection connection = connectionManager.get(ctx.channel());
         LOGGER.debug("channel read, connection={}, packet={}", connection, packet);
         connection.updateLastReadTime();
+        Command command = Command.getCommand(packet.cmd);
+        if (command == Command.HEARTBEAT) {
+            LOGGER.info("ping -> pong, {}", connection);
+            connection.send(packet);
+        } else {
+            LOGGER.info("command is {}", command);
+        }
     }
 
     @Override

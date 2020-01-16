@@ -16,9 +16,9 @@ import org.tiger.api.service.BaseService;
 import org.tiger.api.service.Server;
 import org.tiger.api.service.ServiceException;
 import org.tiger.common.constants.ThreadName;
-import org.tiger.common.utils.OsUtil;
 import org.tiger.netty.codec.PacketDecoder;
 import org.tiger.netty.codec.PacketEncoder;
+import org.tiger.netty.utils.EpollUtil;
 
 import java.net.InetSocketAddress;
 import java.nio.channels.spi.SelectorProvider;
@@ -38,10 +38,10 @@ public abstract class BaseNettyTcpServer extends BaseService implements Server {
 
     private final AtomicReference<State> serverState = new AtomicReference<>(State.CREATED);
 
-    protected final String host;
-    protected final int port;
-    protected EventLoopGroup bossGroup;
-    protected EventLoopGroup workerGroup;
+    private final String host;
+    private final int port;
+    private EventLoopGroup bossGroup;
+    private EventLoopGroup workerGroup;
 
     public BaseNettyTcpServer(int port) {
         this(null, port);
@@ -69,7 +69,7 @@ public abstract class BaseNettyTcpServer extends BaseService implements Server {
         if (!serverState.compareAndSet(State.INITIALIZED, State.STARTING)) {
             throw new ServiceException("Server already started or have not init");
         }
-        if (useNettyEpoll()) {
+        if (EpollUtil.useNettyEpoll()) {
             createEpollServer(listener);
         } else {
             createNioServer(listener);
@@ -95,18 +95,6 @@ public abstract class BaseNettyTcpServer extends BaseService implements Server {
         if (listener != null) {
             listener.onSuccess(port);
         }
-    }
-
-    private boolean useNettyEpoll() {
-        if (OsUtil.isUnix()) {
-            try {
-                Class.forName("io.netty.channel.epoll.Native");
-                return true;
-            } catch (ClassNotFoundException e) {
-                LOGGER.warn("can not load netty epoll, switch nio model.");
-            }
-        }
-        return false;
     }
 
     private void createEpollServer(Listener listener) {

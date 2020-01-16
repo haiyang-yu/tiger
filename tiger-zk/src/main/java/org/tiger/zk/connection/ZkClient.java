@@ -17,11 +17,9 @@ import org.tiger.common.log.TigerLog;
 import org.tiger.zk.exception.ZkException;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -41,11 +39,11 @@ public class ZkClient extends BaseService {
     /**
      * 临时节点
      */
-    private final Map<String, String> ephemeralNodes = new ConcurrentHashMap<>();
+    private final ConcurrentMap<String, String> ephemeralNodes = new ConcurrentHashMap<>();
     /**
      * 临时顺序节点
      */
-    private final Map<String, String> ephemeralSequentialNodes = new ConcurrentHashMap<>();
+    private final ConcurrentMap<String, String> ephemeralSequentialNodes = new ConcurrentHashMap<>();
 
     private synchronized static ZkClient getInstance() {
         return INSTANCE == null ? new ZkClient() : INSTANCE;
@@ -302,7 +300,7 @@ public class ZkClient extends BaseService {
         try {
             return null != framework.checkExists().forPath(key);
         } catch (Exception e) {
-            TigerLog.ZK.error("check node is existed for {} occur exception", key);
+            TigerLog.ZK.error("check node is existed for {} occur exception", key, e);
         }
         return false;
     }
@@ -351,6 +349,7 @@ public class ZkClient extends BaseService {
             }
             List<String> list = framework.getChildren().forPath(key);
             list.sort(Comparator.reverseOrder());
+            return list;
         } catch (Exception e) {
             TigerLog.ZK.error("get children occur exception, key={}", key, e);
         }

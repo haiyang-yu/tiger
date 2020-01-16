@@ -12,13 +12,21 @@
     <artifactId>tiger-client</artifactId>
     <packaging>jar</packaging>
     <name>tiger-client</name>
-    <description>client模块</description>
+    <description>netty client模块</description>
     <url>https://github.com/song-qingwei/tiger</url>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>tiger-netty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>tiger-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>tiger-zk</artifactId>
         </dependency>
     </dependencies>
 </project>

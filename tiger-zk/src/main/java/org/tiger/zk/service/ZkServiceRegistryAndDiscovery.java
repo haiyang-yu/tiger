@@ -4,6 +4,7 @@ import org.tiger.api.listener.Listener;
 import org.tiger.api.service.BaseService;
 import org.tiger.api.zk.discovery.ServiceDiscovery;
 import org.tiger.api.zk.listener.ServiceListener;
+import org.tiger.api.zk.node.CommonServiceNode;
 import org.tiger.api.zk.node.ServiceNode;
 import org.tiger.api.zk.registry.ServiceRegistry;
 import org.tiger.common.utils.JsonUtil;
@@ -88,7 +89,7 @@ public class ZkServiceRegistryAndDiscovery extends BaseService implements Servic
                 .map(key -> path + PATH_SEPARATOR + key)
                 .map(client::get)
                 .filter(Objects::nonNull)
-                .map(childData -> JsonUtil.parseObject(childData, ServiceNode.class))
+                .map(childData -> JsonUtil.parseObject(childData, CommonServiceNode.class))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
