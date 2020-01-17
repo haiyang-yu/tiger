@@ -54,7 +54,7 @@
                     <archive>
                         <manifest>
                             <!--应用的main class-->
-                            <mainClass>org.tiger.boot.TigerApplication</mainClass>
+                            <mainClass>org.tiger.boot.TigerServerApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -3,7 +3,7 @@ package org.tiger.client.connection;
 import io.netty.channel.ChannelHandler;
 import org.tiger.api.connection.ConnectionManager;
 import org.tiger.api.listener.Listener;
-import org.tiger.client.config.ClientConfig;
+import org.tiger.client.model.ClientConfig;
 import org.tiger.client.handler.ClientChannelHandler;
 import org.tiger.common.constants.ThreadName;
 import org.tiger.netty.client.BaseNettyTcpClient;

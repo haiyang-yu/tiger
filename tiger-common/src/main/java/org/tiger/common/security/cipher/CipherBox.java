@@ -75,4 +75,8 @@ public class CipherBox {
         }
         return bytes;
     }
+
+    public int getKeyLength() {
+        return AES_KEY_LENGTH;
+    }
 }

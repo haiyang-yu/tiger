@@ -86,6 +86,7 @@ public class HeartbeatConnectionHolder implements ConnectionHolder, TimerTask {
         Connection connection = this.connection;
         if (connection != null && connection.isConnected()) {
             int timeout = connection.getSessionContext().heartbeat;
+            System.out.println(">>>>>" + timeout);
             timer.newTimeout(this, timeout - timeDiff, TimeUnit.MILLISECONDS);
         }
     }

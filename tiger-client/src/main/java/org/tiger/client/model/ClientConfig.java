@@ -1,4 +1,4 @@
-package org.tiger.client.config;
+package org.tiger.client.model;
 
 import java.io.Serializable;
 
@@ -15,7 +15,7 @@ public class ClientConfig implements Serializable {
     /**
      * {@link org.tiger.common.security.cipher.CipherBox}.randomAesKey()
      */
-    private byte[] key;
+    private byte[] clientKey;
     /**
      * {@link org.tiger.common.security.cipher.CipherBox}.randomAesIv()
      */
@@ -44,12 +44,12 @@ public class ClientConfig implements Serializable {
      */
     private String cipher;
 
-    public byte[] getKey() {
-        return key;
+    public byte[] getClientKey() {
+        return clientKey;
     }
 
-    public void setKey(byte[] key) {
-        this.key = key;
+    public void setClientKey(byte[] clientKey) {
+        this.clientKey = clientKey;
     }
 
     public byte[] getIv() {

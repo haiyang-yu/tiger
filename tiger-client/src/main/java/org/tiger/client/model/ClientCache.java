@@ -1,4 +1,4 @@
-package org.tiger.client.config;
+package org.tiger.client.model;
 
 import java.io.Serializable;
 

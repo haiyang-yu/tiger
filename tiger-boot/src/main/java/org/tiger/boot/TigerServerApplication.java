@@ -3,13 +3,13 @@ package org.tiger.boot;
 import org.tiger.common.log.TigerLog;
 
 /**
- * {@link TigerApplication}
+ * {@link TigerServerApplication}
  *
  * @author SongQingWei
  * @since 1.0.0
  * 2020-01-15 11:06 周三
  */
-public class TigerApplication {
+public class TigerServerApplication {
 
     public static void main(String[] args) {
         TigerLog.init();

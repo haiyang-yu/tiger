@@ -1,4 +1,4 @@
-package org.tiger.core.server;
+package org.tiger.core.manager;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelId;

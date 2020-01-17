@@ -1,6 +1,6 @@
 package org.tiger.sample.server;
 
-import org.tiger.boot.TigerApplication;
+import org.tiger.boot.TigerServerApplication;
 
 /**
  * {@link ServerTest}
@@ -12,6 +12,6 @@ import org.tiger.boot.TigerApplication;
 public class ServerTest {
 
     public static void main(String[] args) {
-        TigerApplication.main(args);
+        TigerServerApplication.main(args);
     }
 }

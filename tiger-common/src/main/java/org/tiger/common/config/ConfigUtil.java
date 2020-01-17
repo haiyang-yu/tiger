@@ -14,6 +14,13 @@ import static org.tiger.common.config.TigerConfig.Tiger.Net.*;
  */
 public final class ConfigUtil {
 
+    public static int getHeartbeat(int min, int max) {
+        return Math.max(
+                Math.max(min, TigerConfig.Tiger.Core.MIN_HEARTBEAT),
+                Math.min(max, TigerConfig.Tiger.Core.MAX_HEARTBEAT)
+        );
+    }
+
     public static String getLocalIp() {
         if (StringUtils.isNotBlank(LOCAL_IP)) {
             return LOCAL_IP;
